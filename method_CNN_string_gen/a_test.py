@@ -1,0 +1,54 @@
+import os
+import pickle
+
+import tensorflow as tf
+from method_CNN_string_gen.a_model import Model, Config
+
+from method_CNN_string_gen.a_read_util import char_set, read_test_xy, get_text_xy
+
+
+def main(_):
+
+    model_path = os.path.join('a_models', Config.file_name)
+    if os.path.exists(model_path) is False:
+        os.makedirs(model_path)
+
+    # 加载上一次保存的模型
+    model = Model(Config)
+    checkpoint_path = tf.train.latest_checkpoint(model_path)
+    if checkpoint_path:
+        model.load(checkpoint_path)
+
+    print('start to test...')
+    with open('../train_test_set.pkl','rb') as f:
+        train_set,test_set = pickle.load(f)
+
+    n ,k = 0,0
+    for ts in test_set:
+        n+=1
+        filename = os.path.basename(ts)
+        text = filename.replace('.png', '')
+        print('text:',text)
+
+        x_test, y_test = get_text_xy(text)
+        x_test_c, y_test_c = read_test_xy([ts])
+
+        max_idx_p = model.test(x_test)
+        chars = [char_set[idx] for idx in max_idx_p[0]]
+        pre_text = "".join(chars)
+        print('predict self text:',pre_text)
+
+        max_idx_p_c = model.test(x_test_c)
+        chars = [char_set[idx] for idx in max_idx_p_c[0]]
+        pre_text = "".join(chars)
+        print('predict other text:',pre_text)
+
+        if text.lower() == pre_text.lower():
+            k+=1
+
+    print(k,'/',n,'   ',k/n)
+
+
+if __name__ == '__main__':
+
+    tf.app.run()
