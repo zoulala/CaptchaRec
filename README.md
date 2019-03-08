@@ -171,8 +171,6 @@ tTwg
 
 
 
-最后，附上源码地址：[github](https://github.com/zoulala/CaptchaRec)
-
 
 
 
