@@ -19,7 +19,7 @@ from libs.cut_prc import cut_box, seg_img
 nd = NoiseDel()
 
 class Config():
-    file_name = 'char_03'  # 存放模型文件夹
+    file_name = 'char_07'  # 存放模型文件夹
 
     w_alpha = 0.01  #cnn权重系数
     b_alpha = 0.1  #cnn偏执系数
@@ -27,7 +27,7 @@ class Config():
     image_w = 16
 
 
-    cnn_f = [16,32,32,512]  # [cov1输出特征维度，cov2输出特征维度，cov3输出特征维度，全连接层输出维度]
+    cnn_f = [64,64,64,1024]  # [cov1输出特征维度，cov2输出特征维度，cov3输出特征维度，全连接层输出维度]
 
     max_captcha = 1  #验证码最大长度
     char_set_len = 50  #字符集长度
@@ -211,7 +211,7 @@ if __name__=="__main__":
 
     # train and val
     print('start to training...')
-    model.train(get_next_batch, model_path, x_train,y_train, x_test, y_test)
+    # model.train(get_next_batch, model_path, x_train,y_train, x_test, y_test)
 
 
     # test

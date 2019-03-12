@@ -36,9 +36,12 @@ class ReadFiles():
 
 class Gif2Png():
 
-    def img2arr(self, file):
-        image = Image.open(file)
-        image = np.array(image)  # 变成灰度图像
+    def Image2arr(self,file, k=0):
+        im = Image.open(file)
+        im.seek(k)  # 参数是选择第几张图
+        new_im = Image.new("RGB", im.size)
+        new_im.paste(im)
+        image = np.array(new_im)
         return image
 
     def cv2arr(self, file):
