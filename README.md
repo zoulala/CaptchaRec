@@ -168,3 +168,7 @@ fd9e
 bTYt
 tTwg
 ```
+
+# 增加滑动验证码识别功能
+ 
+ slip_captcha/
