@@ -13,7 +13,7 @@ from PIL import Image
 from libs.noise_prc import NoiseDel
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
-
+from sklearn.externals import joblib
 from libs.cut_prc import cut_box, seg_img
 
 nd = NoiseDel()
@@ -193,6 +193,10 @@ if __name__=="__main__":
     ly = lb.fit_transform(y)  # one-hot
     x = np.array(x)
     y = np.array(ly)
+
+    # 保存label模型
+    joblib.dump(lb, 'models/libel.pkl')
+
 
     # 拆分训练数据与测试数据
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.02)
