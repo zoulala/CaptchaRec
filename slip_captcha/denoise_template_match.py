@@ -3,8 +3,9 @@ import os
 import cv2
 import numpy as np
 from PIL import Image
+from flask import Flask,request,jsonify
 
-
+app = Flask(__name__)
 
 def bi_img(img, throd1=135, throd2=156):
     n,m = img.shape
@@ -61,6 +62,24 @@ def gen_lit_img(filename):
     new_img.show()
     temp = np.array(new_img)
     return temp
+
+
+@app.route('/v2/cyou/captcha/toutiao', methods=['POST'])
+def slip_captcha():
+    data = request.get_json()
+
+    big_img = data['big_img']
+    lit_img = data['lit_img']
+
+    big = gen_big_img(filename0)
+    temp = gen_lit_img(filename1)
+
+    methods = [cv2.TM_SQDIFF_NORMED, cv2.TM_CCORR_NORMED, cv2.TM_CCOEFF_NORMED]
+    result = cv2.matchTemplate(big,temp,methods[1])
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+    print(max_loc, max_val)
+
+    return jsonify({'code': code, 'message': message})
 
 
 if __name__=="__main__":
