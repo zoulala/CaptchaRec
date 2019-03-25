@@ -173,4 +173,5 @@ tTwg
  
  slip_captcha/
  
- ![](https://p3-dy.bytecdn.cn/img/security-captcha/slide_2ac835ca78882e3973388dc726be0f93f3850e32_1_1.jpg~tplv-obj.image)
+ ![](https://p3-dy.bytecdn.cn/img/security-captcha/slide_4b1eae0047860b6fb4428c728dad012616f17b39_1_1.jpg~tplv-obj.image)
+ ![](https://p3-dy.bytecdn.cn/img/security-captcha/slide_4b1eae0047860b6fb4428c728dad012616f17b39_2_1.png~tplv-obj.image)
