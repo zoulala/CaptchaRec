@@ -1,5 +1,4 @@
 
-import os
 import cv2
 import base64
 import numpy as np
@@ -75,8 +74,11 @@ def slip_captcha():
     try:
         data = request.get_json()
 
-        big_data = data.get('background')
-        lit_data = data.get('template')
+        big_data = data.get('jpeg')
+        lit_data = data.get('png')
+
+        big_data = big_data.split(';base64,')[-1]
+        lit_data = lit_data.split(';base64,')[-1]
 
         big_image = base64_to_image(big_data)
         lit_image = base64_to_image(lit_data)
