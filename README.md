@@ -172,3 +172,5 @@ tTwg
 # 增加滑动验证码识别功能
  
  slip_captcha/
+ 
+ ![](https://p3-dy.bytecdn.cn/img/security-captcha/slide_2ac835ca78882e3973388dc726be0f93f3850e32_1_1.jpg~tplv-obj.image)
