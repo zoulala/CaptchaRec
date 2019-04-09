@@ -161,10 +161,16 @@ def get_next_batch( train_x, train_y, batch_size=32):
 def img_cut_to_arry(img):
     imgs = []
     image = nd.noise_del(img)
+    # ima = Image.fromarray(image,'RGB')
+    # ima.show()
     image = cut_box(image)
+    # ima = Image.fromarray(image)
+    # ima.show()
     image_list = seg_img(image)
     for im in image_list:
         im = nd.convert2gray(im)
+        # ima = Image.fromarray(im)
+        # ima.show()
         im = im.reshape(-1)
         imgs.append(im)
     return imgs
